@@ -1,5 +1,5 @@
 # Metatranscriptomics_Analysis
-###Getting Started
+### Getting Started
 To begin, install Linux on your system. The following tutorial will use Ubuntu 24.04 version. You can find out how to install [here](https://ubuntu.com/download/desktop). The two key software tools, KneadData and MetaPhlAn, are Python-based tools, so it's imperative to install the latest version of Python and pip to facilitate future installations.  
 ```ruby
 sudo apt install python3 python3-pip
@@ -37,7 +37,7 @@ Download the raw SRA files from NCBI and put them in the same folder designated 
 ```
 sra-stat --meta SRRXXXXXXX.sra
 ```
-###Convert SRA to Fastq Files
+### Convert SRA to Fastq Files
 Move to the folder designated to store fastq files using ```cd``` and run either of the following codes depending on whether the SRA file is paired-end or single-end. 
 **Paired-end**
 ```
@@ -58,7 +58,7 @@ done
 ls $DIR/fastq
 ```
 
-###Run KneadData
+### Run KneadData
 Move to the folder designated to store KneadData outputs using ```cd```. For paired-end reads, which is likely the case, run the following code (```--log``` is optional): 
 ```
 kneaddata \
@@ -82,5 +82,5 @@ kneaddata \
     --log $DIR/logs/SRRXXXXXXXX_kneaddata.log
 ```
 
-###Run MetaPhlAn
+### Run MetaPhlAn
 Move to the folder designated to store MetaPhlAn outputs using ```cd```. 

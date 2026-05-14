@@ -1,4 +1,4 @@
-# Metatranscriptomics_Analysis
+# Metatranscriptomics Analysis
 ### Getting Started
 To begin, install Linux on your system. The following tutorial will use Ubuntu 24.04 version. You can find out how to install [here](https://ubuntu.com/download/desktop). The two key software tools, KneadData and MetaPhlAn, are Python-based tools, so it's imperative to install the latest version of Python and pip to facilitate future installations.  
 ```ruby

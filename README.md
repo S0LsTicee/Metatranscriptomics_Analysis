@@ -37,6 +37,13 @@ Download the raw SRA files and their corresponding metadata (this will be useful
 ```ruby
 sra-stat --meta SRRXXXXXXX.sra
 ```
+
+Merge the metadata file into one master file for later processing in R: 
+```
+head -1 first_metadata.txt > metadata_merged.txt
+tail -n +2 -q metadata_*.txt >> metadata_merged.txt
+```
+
 ## Convert SRA to Fastq Files
 Move to the folder designated to store fastq files using ```cd``` and run either of the following codes depending on whether the SRA file is paired-end or single-end. 
 **Paired-end**

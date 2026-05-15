@@ -1,5 +1,5 @@
 # Metatranscriptomics Analysis
-### Getting Started
+## Getting Started
 To begin, install Linux on your system. The following tutorial will use Ubuntu 24.04 version. You can find out how to install [here](https://ubuntu.com/download/desktop). The two key software tools, KneadData and MetaPhlAn, are Python-based tools, so it's imperative to install the latest version of Python and pip to facilitate future installations.  
 ```ruby
 sudo apt install python3 python3-pip
@@ -37,7 +37,7 @@ Download the raw SRA files from NCBI and put them in the same folder designated 
 ```
 sra-stat --meta SRRXXXXXXX.sra
 ```
-### Convert SRA to Fastq Files
+## Convert SRA to Fastq Files
 Move to the folder designated to store fastq files using ```cd``` and run either of the following codes depending on whether the SRA file is paired-end or single-end. 
 **Paired-end**
 ```
@@ -58,7 +58,7 @@ done
 ls $DIR/fastq
 ```
 
-### Run KneadData
+## Run KneadData
 Move to the folder designated to store KneadData outputs using ```cd```. For paired-end reads, which is likely the case, run the following code (```--log``` is optional): 
 ```
 kneaddata \
@@ -80,6 +80,25 @@ kneaddata \
     --output $DIR/kneaddata_output/SRRXXXXXXXX/ \
     --threads 8 \
     --log $DIR/logs/SRRXXXXXXXX_kneaddata.log
+```
+
+### Some Key Concepts
+**Trimmomatic Parameters:** 
+- ILLUMINACLIP: cut specific Illumina adapter sequences to remove contaminants from the read.
+- LEADING: cut low-quality bases below a certain threshold off the start of a read to reduce noise.
+- TRAILING: cut low-quality bases below a certain threshold off the end of a read to reduce noise.
+- SLIDINGWINDOW: perform a sliding window trimming that cuts when the average quality within the window falls below a specific threshold. 
+- MINLEN: drop the read if it is below a specific length.
+- MAXLEN: drop the read if it is longer than a specific length.
+- AVGQUAL: drop the read if its average quality is below a specific threshold.
+
+**Threads** - determines the number of CPU cores used for parallel processing, affecting runtime and performance. Increasing the thread count decreases runtime and allows tools like BowTie2 and Trimmomatic to run simultaneously. The number of threads should not be arbitrary, but based on your device's CPU. To check your device's CPU, do the following and use a thread count less than the total CPU to ensure functionality of other services:
+_Window's_
+```
+```
+
+_Mac iOS_ 
+```
 ```
 
 ### Run MetaPhlAn

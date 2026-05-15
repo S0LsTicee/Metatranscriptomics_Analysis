@@ -243,3 +243,6 @@ See the R code for various analyses in the other files of this repository. The f
 
 
 ### Beta Diversity Analysis
+
+
+### Rarefaction 

@@ -5,6 +5,13 @@ my_packages <- c("phyloseq", "vegan", "ggplot2", "dplyr",
 
 install.packages(my_packages)
 
+# Check for missing files and install them
+not_installed <- my_packages[!(my_packages %in% installed.packages()[, "Package"])]
+
+if(length(not_installed)) {
+  install.packages(not_installed)
+}
+
 # Load merged files
 metaphlan <- read.delim(
   "metaphlan_merged.txt", #This is a placeholder for the name of your merged metaphlan file

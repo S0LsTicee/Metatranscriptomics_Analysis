@@ -24,14 +24,14 @@ conda install -c bioconda metaphlan -y
 
 KneadData was installed with Trimmomatics and BowTie2, which will be used later to filter low-quality bases, trim adaptors, and match cleaned reads to a reference genome, respectively. Make a directory for the project and separate folders for the raw SRA files, databases, fastq files, and the KneadData and MetaPhlAn outputs before downloading the corresponding reference databases for the specimen you're running an analysis on. Replace ```$DIR``` with the path to your database directory ```(e.g., ~/metagenomics_project/)```. Below is a list of the most common databases and their installation instructions:  
 * Human Genome (default)
-    kneaddata_database --download human_genome bowtie2 $DIR/databases/kneaddata_db/
+    - kneaddata_database --download human_genome bowtie2 $DIR/databases/kneaddata_db/
 * Human Transcriptome
-    kneaddata_database --download human_transcriptome bowtie2 $DIR/databases/kneaddata_db/
+    - kneaddata_database --download human_transcriptome bowtie2 $DIR/databases/kneaddata_db/
 * SILVA RNA
-    kneaddata_database --download ribosomal_RNA bowtie2 $DIR/databases/kneaddata_db/
+    - kneaddata_database --download ribosomal_RNA bowtie2 $DIR/databases/kneaddata_db/
 * Specific Host Genome, such as mouse (mouse_C57BL) or cat (cat_genome)
-    kneaddata_database --download mouse_C57BL bowtie2 $DIR/databases/kneaddata_db/
-    kneaddata_database --download cat_genome bowtie2 $DIR/databases/kneaddata_db/
+    - kneaddata_database --download mouse_C57BL bowtie2 $DIR/databases/kneaddata_db/
+    - kneaddata_database --download cat_genome bowtie2 $DIR/databases/kneaddata_db/
 
 Download the raw SRA files and their corresponding metadata (this will be useful later when using R for further analysis) from [NCBI](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/) and put them in the same folder designated for raw SRA files. SRA reads are either paired-end or single-end, with paired-end reads sequencing both ends of a DNA fragment, providing higher alignment confidence and enabling detection of structural rearrangements, while single-end reads sequence only one end, enabling a faster, simpler analysis process. Metagenomics is usually paired-end, but to double-check, read the metadata for the SRA file using 
 ```ruby

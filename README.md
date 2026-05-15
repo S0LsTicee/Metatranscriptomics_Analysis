@@ -219,7 +219,7 @@ sudo systemctl status rstudio-server #Check server status
 
 Access RStudio on the web from your browser and log in with your Linux username and password:```http://localhost:YOUR_SERVER_IP``` (usually, ```http://localhost:8787``` would work as the default for your machine). 
 
-Manage the RStudio server, such as when the RStudio server lags due to an overwhelming history input:
+Manage the RStudio server when it lags due to an overwhelming input history:
 ```ruby
 sudo systemctl stop rstudio-server #Stop service
 rm -rf /home/yourusername/.local/rstudio/ #Clear RStudio session data for specific user

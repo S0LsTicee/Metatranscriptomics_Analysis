@@ -3,7 +3,7 @@ my_packages <- c("phyloseq", "vegan", "ggplot2", "dplyr",
   "tidyr", "RColorBrewer", "iNEXT")
 
 # Check for missing files and install them
-not_installed <- not_installed[!(not_installed %in% installed.packages()[, "Package"])]
+not_installed <- my_packages[!(my_packages %in% installed.packages()[, "Package"])]
 
 if(length(not_installed)) {
   install.packages(not_installed)

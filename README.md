@@ -92,14 +92,15 @@ kneaddata \
 - MAXLEN: drop the read if it is longer than a specific length.
 - AVGQUAL: drop the read if its average quality is below a specific threshold.
 
+_If your KneadData crashes due to trimmomatic error, lower the MILEN gradually (e.g., 50 -> 36 -> 20) and/or the SLIDINGWINDOW (e.g., 4:20 -> 4:15; 4 is the number of RNA bases to average across and 20 is the average quality required, both numbers can be lowered to avoid error)._
+
 **Threads** - determines the number of CPU cores used for parallel processing, affecting runtime and performance. Increasing the thread count decreases runtime and allows tools like BowTie2 and Trimmomatic to run simultaneously. The number of threads should not be arbitrary, but based on your device's CPU. To check your device's CPU, do the following and use a thread count less than the total CPU to ensure functionality of other services:
-_Window's_
 ```
+nproc #displays the total number of processing units available to WSL. 
+lscpu #displays a detailed breakdown of CPU architecture, including total number of CPUs, cores per socket, and threads per core. 
 ```
 
-_Mac iOS_ 
-```
-```
+_If your KneadData crashes or runs on indefinitely, reduce the number of threads and try again._
 
 ### Run MetaPhlAn
 Move to the folder designated to store MetaPhlAn outputs using ```cd```. 

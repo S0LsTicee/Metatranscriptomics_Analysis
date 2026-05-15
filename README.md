@@ -128,15 +128,16 @@ metaphlan \
     2> $DIR/logs/SRRXXXXXXXX_metaphlan.log
 ```
 
-### Some Key Concepts:
-**nproc** - argument that defines the number of processor cores (threads) to use for parallel processing. --nproc 4 or higher is recommended for faster profiling of large metagenomic datasets. However, always check your device's CPU core and lower the number if MetaPhlAn crashes or runs on indefinitely. 
-
 Merge all MetaPhlAn output files into a single file in a table format to facilitate further analysis with the metadata using R. 
 ```ruby
 merge_metaphlan_tables.py \
     $DIR/metaphlan_output/*_profile.txt \
     -o $DIR/metaphlan_output/merged_profiles.txt
 ```
+
+### Some Key Concepts:
+**nproc** - argument that defines the number of processor cores (threads) to use for parallel processing. --nproc 4 or higher is recommended for faster profiling of large metagenomic datasets. However, always check your device's CPU core and lower the number if MetaPhlAn crashes or runs on indefinitely. 
+
 ### Bonus Filters, Apply As Needed:
 Extract species-level data:
 ```

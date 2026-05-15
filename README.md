@@ -33,34 +33,34 @@ KneadData was installed with Trimmomatics and BowTie2, which will be used later 
     kneaddata_database --download mouse_C57BL bowtie2 $DIR/databases/kneaddata_db/
     kneaddata_database --download cat_genome bowtie2 $DIR/databases/kneaddata_db/
 
-Download the raw SRA files from NCBI and put them in the same folder designated for raw SRA files. SRA reads are either paired-end or single-end, with paired-end reads sequencing both ends of a DNA fragment, providing higher alignment confidence and enabling detection of structural rearrangements, while single-end reads sequence only one end, enabling a faster, simpler analysis process. Metagenomics is usually paired-end, but to double-check, read the metadata for the SRA file using 
-```
+Download the raw SRA files and their corresponding metadata (this will be useful later when using R for further analysis) from [NCBI](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/) and put them in the same folder designated for raw SRA files. SRA reads are either paired-end or single-end, with paired-end reads sequencing both ends of a DNA fragment, providing higher alignment confidence and enabling detection of structural rearrangements, while single-end reads sequence only one end, enabling a faster, simpler analysis process. Metagenomics is usually paired-end, but to double-check, read the metadata for the SRA file using 
+```ruby
 sra-stat --meta SRRXXXXXXX.sra
 ```
 ## Convert SRA to Fastq Files
 Move to the folder designated to store fastq files using ```cd``` and run either of the following codes depending on whether the SRA file is paired-end or single-end. 
 **Paired-end**
-```
+```ruby
 fastq-dump --split-files --gzip $DIR/raw_sra/SRRXXXXXXXX/SRRXXXXXXXX.sra --outdir $DIR/fastq/
 ```
 **Single-end**
-```
+```ruby
 fastq-dump --gzip $DIR/raw_sra/SRR12345678/SRR12345678.sra --outdir $DIR/fastq/
 ```
 **Batch Conversion for Paired-end**
-```
+```ruby
 for sra_file in $DIR/raw_sra/*/*.sra; do
     fastq-dump --split-files --gzip "$sra_file" --outdir $DIR/fastq/
 done
 ```
 **Check whether the fastq files exist**
-```
+```ruby
 ls $DIR/fastq
 ```
 
 ## Run KneadData
 Move to the folder designated to store KneadData outputs using ```cd```. For paired-end reads, which is likely the case, run the following code (```--log``` is optional): 
-```
+```ruby
 kneaddata \
     -i1 $DIR/fastq/SRR12345678_1.fastq.gz \
     -i2 $DIR/fastq/SRR12345678_2.fastq.gz \
@@ -73,7 +73,7 @@ kneaddata \
 ```
 
 For single-end reads, run the following:
-```
+```ruby
 kneaddata \
     -i $DIR/fastq/SRR12345678.fastq.gz \
     --reference-db $DIR/databases/kneaddata_db/ \
@@ -97,10 +97,104 @@ _If your KneadData crashes due to trimmomatic error, lower the MILEN gradually (
 **Threads** - determines the number of CPU cores used for parallel processing, affecting runtime and performance. Increasing the thread count decreases runtime and allows tools like BowTie2 and Trimmomatic to run simultaneously. The number of threads should not be arbitrary, but based on your device's CPU. To check your device's CPU, do the following and use a thread count less than the total CPU to ensure functionality of other services:
 ```
 nproc #displays the total number of processing units available to WSL. 
-lscpu #displays a detailed breakdown of CPU architecture, including total number of CPUs, cores per socket, and threads per core. 
+lscpu #displays a detailed breakdown of CPU architecture, including the total number of CPUs, cores per socket, and threads per core. 
 ```
 
 _If your KneadData crashes or runs on indefinitely, reduce the number of threads and try again._
 
 ### Run MetaPhlAn
-Move to the folder designated to store MetaPhlAn outputs using ```cd```. 
+Download the latest MetaPhlAn database. 
+```ruby
+metaphlan --install --bowtie2db $DIR/databases/metaphlan_db/
+```
+Then move to the folder designated to store MetaPhlAn outputs using ```cd``` and run the following code for paired-end read (```2>``` is optional as it has the function as log in KneadData): 
+```ruby
+metaphlan \   $DIR/kneaddata_output/SRRXXXXXXXX/SRRXXXXXXXX_paired_1.fastq,$DIR/kneaddata_output/SRRXXXXXXXX/SRRXXXXXXXX_paired_2.fastq \
+    --bowtie2db $DIR/databases/metaphlan_db/ \
+    --input_type fastq \
+    --output_file $DIR/metaphlan_output/SRRXXXXXXXX_profile.txt \
+    --bowtie2out $DIR/metaphlan_output/SRRXXXXXXXX.bowtie2.bz2 \
+    --nproc 8 \
+    2> $DIR/logs/SRRXXXXXXXX_metaphlan.log
+```
+For single-paired reads:
+```ruby
+metaphlan \
+    $DIR/kneaddata_output/SRRXXXXXXXX/SRRXXXXXXXX_kneaddata_paired_1.fastq \
+    --bowtie2db $DIR/databases/metaphlan_db/ \
+    --input_type fastq \
+    --output_file $DIR/metaphlan_output/SRRXXXXXXXX_profile.txt \
+    --nproc 8
+    2> $DIR/logs/SRRXXXXXXXX_metaphlan.log
+```
+
+### Some Key Concepts:
+**nproc** - argument that defines the number of processor cores (threads) to use for parallel processing. --nproc 4 or higher is recommended for faster profiling of large metagenomic datasets. However, always check your device's CPU core and lower the number if MetaPhlAn crashes or runs on indefinitely. 
+
+Merge all MetaPhlAn output files into a single file in a table format to facilitate further analysis with the metadata using R. 
+```ruby
+merge_metaphlan_tables.py \
+    $DIR/metaphlan_output/*_profile.txt \
+    -o $DIR/metaphlan_output/merged_profiles.txt
+```
+### Bonus Filters, Apply As Needed:
+Extract species-level data:
+```
+grep -E "s__|clade" $DIR/metaphlan_output/merged_profiles.txt \
+    > $DIR/metaphlan_output/species_profiles.txt
+```
+Extract genus-level data:
+```
+grep -E "g__|clade" $DIR/metaphlan_output/merged_profiles.txt \
+    > $DIR/metaphlan_output/genus_profiles.txt
+```
+Extract phylum-level data:
+```
+grep -E "p__|clade" $DIR/metaphlan_output/merged_profiles.txt \
+    > $DIR/metaphlan_output/phylum_profiles.txt
+```
+
+### Troubleshooting:
+1. Check device disk space as the databases and files are large: ```df -h```
+2. Monitor job process in another command prompt tab: ```tail -f $DIR/logs/SRRXXXXXXXX_kneaddata.log``` (This works for MetaPhlAn log files as well.)
+
+## Use Google Drive and Google Colab if MetaPhlAn Keeps Crashing on the Device
+Use the free 100GB 1-month plan with student credentials and upload the KneadData output files and MetaPhlAn BowTie2 databases to your Google Drive. Then, open Google Colab, activate Colab Pro using student credentials to get a 1-year free trial, and mount your drive to the colab page with the following code:
+```ruby
+from google.colab import drive
+drive.mount('/PATH/TO/DRIVE_FOLDER')
+```
+
+Install MetaPhlAn and BowTie2 locally in Colab:
+```ruby
+!pip install metaphlan
+!apt-get install -y bowtie2
+```
+
+Install BowTie2 Database to a designated folder:
+```ruby
+db_drive_path = "/PATH/TO/metatranscriptomics/metaphlan_db"
+!mkdir -p {db_drive_path}
+!metaphlan --install --bowtie2db /PATH/TO/metatranscriptomics/metaphlan_db
+```
+
+Run MetaPhlAn with ```nohup```, which keeps the process running even if the session disconnects or times out, and ```verbose```, which prints detailed progress messages while MetaPhlAn runs:
+```ruby
+!nohup metaphlan /PATH/TO/KNEADDATA_FOLDER/SRRXXXXXXXX_1_kneaddata_paired_1.fastq,/PATH/TO/KNEADDATA_FOLDER/SRRXXXXXXXX_1_kneaddata_paired_2.fastq \
+    --input_type fastq \
+    --nproc 4 \
+    --bowtie2db /PATH/TO/metatranscriptomics/metaphlan_db/ \
+    --bowtie2out /PATH/TO/METAPHLAN_OUTPUT/SRRXXXXXXXX_bowtie2.bz2 \
+    -o /PATH/TO/METAPHLAN_OUTPUT/SRRXXXXXXXX_profile.txt \
+    --verbose > /PATH/TO/METAPHLAN_OUTPUT/metaphlan_log.txt 2>&1 &
+
+print("MetaPhlAn running in background. Check log file for progress.")
+```
+
+Check the progress in the log file and if MetaPhlAn is still running:
+```ruby
+!tail -f /PATH/TO/METAPHLAN_OUTPUT/metaphlan_log.txt
+!ps aux | grep metaphlan
+```
+
+## Download and Set Up RStudio Web

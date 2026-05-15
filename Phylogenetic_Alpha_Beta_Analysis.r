@@ -11,6 +11,18 @@ if(length(not_installed)) {
   install.packages(not_installed)
 }
 
+library(phyloseq)
+library(vegan)
+library(ape)
+library(picante)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(RColorBrewer)
+library(pairwiseAdonis)
+library(GUniFrac)
+
 #Load merged files
 metaphlan <- read.delim(
   "metaphlan_merged.txt", #This is a placeholder name for your merged metaphlan file 

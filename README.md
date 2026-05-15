@@ -39,7 +39,7 @@ sra-stat --meta SRRXXXXXXX.sra
 ```
 
 Merge the metadata file into one master file for later processing in R: 
-```
+```ruby
 head -1 first_metadata.txt > metadata_merged.txt
 tail -n +2 -q metadata_*.txt >> metadata_merged.txt
 ```

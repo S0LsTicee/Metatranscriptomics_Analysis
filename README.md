@@ -197,4 +197,40 @@ Check the progress in the log file and if MetaPhlAn is still running:
 !ps aux | grep metaphlan
 ```
 
-## Download and Set Up RStudio Web
+## Download and Set Up RStudio Web Server
+While RStudio can be installed as a desktop software, the web version is lighter and easier to access with less lag. You can find instructions for installing RStudio on Linux or Windows [here](https://posit.co/download/rstudio-desktop). The following are the steps to install RStudio Server on Linux:
+```ruby
+sudo apt update #Update package list
+sudo apt install -y r-base r-base-dev #Install R
+R --version #Check version
+
+wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.1-402-amd64.deb #Downloads R Server
+sudo dpkg -i rstudio-server-2023.12.1-402-amd64.deb
+sudo apt --fix-broken install -y #Install any missing dependencies
+```
+
+Once the downloads are complete, start the RStudio server:
+```ruby
+sudo systemctl start rstudio-server #Start the service
+sudo systemctl enable rstudio-server #Enable it to start on boot when WSL activates
+sudo systemctl status rstudio-server #Check server status
+```
+
+Access RStudio on the web from your browser and log in with your Linux username and password:```http://localhost:YOUR_SERVER_IP``` (usually, ```http://localhost:8787``` would work as the default for your machine). 
+
+Manage the RStudio server, such as when the RStudio server lags due to an overwhelming history input:
+```ruby
+sudo systemctl stop rstudio-server #Stop service
+rm -rf /home/yourusername/.local/rstudio/ #Clear RStudio session data for specific user
+rm /home/yourusername/.RData #Clear RStudio workspace data
+sudo systemctl restart rstudio-server #Restart service
+sudo journalctl -u rstudio-server #Check logs if an error occurs
+```
+
+## R Code for Metatranscriptomic Analysis 
+See the R code for various analyses in the other files of this repository. The following would offer simple explanations of the functionality of each analysis and how to interpret the output data. 
+
+### Alpha Diversity Analysis 
+
+
+### Beta Diversity Analysis

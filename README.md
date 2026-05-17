@@ -240,8 +240,9 @@ sudo journalctl -u rstudio-server #Check logs if an error occurs
 See the R code for various analyses in the other files of this repository. The following would offer simple explanations of the functionality of each analysis and how to interpret the output data. 
 
 ### Alpha Diversity Analysis 
+Alpha diversity 
 
-
+Additional information on the topic could be found [here](https://cran.r-project.org/web/packages/tabula/vignettes/alpha.html)
 ### Beta Diversity Analysis
 
 

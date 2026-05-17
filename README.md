@@ -240,11 +240,19 @@ sudo journalctl -u rstudio-server #Check logs if an error occurs
 See the R code for various analyses in the other files of this repository. The following would offer simple explanations of the functionality of each analysis and how to interpret the output data. 
 
 ### Alpha Diversity Analysis 
-Alpha diversity 
+Alpha diversity determines what and how many species are present in a particular environment within one sample. It measures the richness and evenness using metrics such as OTUs, Chao1 (estimated richness), and Shannon (diversity & evenness). The result is usually visualized with boxplots that compare groups utilizing non-parametric tests like Wilcoxon. 
+
+**OTU (Operational Taxonomic Unit)** - groups closely related genetic sequences into clusters of taxonomic groups. Typically, sequences that are >= 97% identical are grouped into a single OTU, while sequences that are < 97% identical are split into different OTUs. The clustering process compares the sequences against a known database (e.g., Human, Mouse_C57BL). 
+**Richness** - total number of taxonomic groups observed in a sample.
+**Evenness** - the uniformity of individuals distributed among different species. 
+**Chao1 Index** - Estimates the total richness by taking into account rare species.
+**Shannon Index** - Accounts for both richness and evenness; it yields higher values when the sample has higher diversity.
+**Simpson Index** - Measures the probability that two individuals randomly selected from a sample belong to the same species. 
 
 Additional information on the topic could be found [here](https://cran.r-project.org/web/packages/tabula/vignettes/alpha.html)
-### Beta Diversity Analysis
 
+### Beta Diversity Analysis
+Beta diversity measures and quantifies how different two environments from different samples are. 
 
 ### Rarefaction 
 

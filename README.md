@@ -322,10 +322,26 @@ Prevalence measures how often a specific microbe appears across a sample populat
 * **Differential Abundance Analysis** - to find microbes that significantly differ between groups, algorithms that account for compositionality and zero-inflation, such as ANCOM-BC, LinDA (linear regression models on centered log-ratio transformed data aimed to correct biases with FDR control), and MaAsLin2 (multivariate analyses that adjust for metadata and confounding variables), are used. 
 
 ### Proportionality Analysis
+A statistical method for identifying pairs of microbial taxa that maintain constant relative ratios across samples. It resolves the issue of compositionality where sequencing data yields only relative abundance, indicating a misleading negative correlation between unrelated taxa. 
 
+Contrary to correlation metrics such as Pearson or Spearman, proportionality metrics are more suitable for relative abundance data and build highly accurate microbial association networks. 
+
+**_Three Primary Proportionality Metrics_**
+* **Phi** - A measure of proportional variances. If the ratio of two taxa remains constant, their log-ratio variances approach zero.
+* **Rho** - A concordance-based metric ranging from -1 to 1. It serves a similar purpose to a correlation coefficient but is adjusted for compositional data.
+* **Theta** - A proportionality metric that specifically evaluates the similarity between the relative abundances of two taxa.
+
+**_Requirements & Considerations_** 
+* A Microbiome dataset has many zeros, which is the reason it is imperative to filter or impute extreme sparsity or structural zeros before evaluation.
 
 ### Rank Abundance 
+A graphical tool to visualize the composition of a microbial community. It plots the relative abundance of each microbial species on the y-axis against its abundance rank (from most to least) on the x-axis. 
 
+In almost all healthy microbiomes, the rank abundance curve depicts a pattern of a long tail of rare microbes, with just one or a few highly abundant species. The most abundant constructs a large percentage of the total community, while the majority of taxa exist in very low numbers. 
+
+**_How to Analyze_**
+* **Species Richness** - Total number of distinct microbial species in a sample; indicated by the length of the curve.
+* **Species Evenness** - The slope of the curve reveals how evenly the microbes are distributed. A steep curve indicates a community dominated by a few species, while a shallow slope indicates a balanced community.
 
 ### Taxa-Taxa Correlation
 

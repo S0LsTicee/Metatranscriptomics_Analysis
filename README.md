@@ -344,12 +344,25 @@ In almost all healthy microbiomes, the rank abundance curve depicts a pattern of
 * **Species Evenness** - The slope of the curve reveals how evenly the microbes are distributed. A steep curve indicates a community dominated by a few species, while a shallow slope indicates a balanced community.
 
 ### Taxa-Taxa Correlation
+Measures how the abundances of different microorganisms vary together across samples. It is used to map microbial networks, identify cooccurrence or co-exlusion, and discover keystone species. It shares the same statistical challenges as proportionality analysis.
 
+**_Interpretations:_**
+* **Cooccurrence** - Suggests that taxa thrive in similar environmental conditions, cross-feed, or rely on the same metabolic byproducts.
+* **Co-exclusion** - Suggests competitive exclusion, where taxa fight for the same limited nutrients or produce antimicrobial compounds that inhibit the growth of others.
+* **Keystone Taxa** - Highly connected network hubs that exert massive influence over the entire microbiome's structure and function, despite the occasional low relative abundance. 
 
 ### Outlier Detection
+Identifying samples or bacterial taxa that significantly deviate from the majority. It is a crucial preprocessing step for quality control and detecting abnormal microbial states or extreme variations in specific bacterial species. 
 
+Conventional outlier methods often fall short when applied to microbiome data as it is highly dimensional, sparse, and zero-inflated. Thus, specialized techniques are used to detect samples heavily skewed by other factors. 
+
+**_Some Common Methods:_**
+* **CLOUD (Non-parametric Detection Test)_** - Evaluates conformity to determine if the microbiome data deviates from a healthy reference distribution.
+* **PCoA/NMDS (Principal Coordinates Analysis/Non-metric Multidimensional Scaling Plots)** - Typically uses Bray-Curtis or UniFrac distance matrices to flag samples that fall far outside established experimental clusters.
+* **Alpha Diversity Filters** - Evaluates within-sample diversity metrics (e.g., Shannon index or OUTs) and filters subjects with unusually low or high richness, which might indicate contamination or DNA extraction failures. 
 
 ### Sample Clustering Dendrogram 
 
 
 ### Cladogram
+

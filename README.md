@@ -404,3 +404,6 @@ Displays taxonomic changes in the gut microbiome between groups. Common tools in
 **Rectangular Cladogram** - Best for small to medium-sized datasets. The horizontally extended branches are highly readable and facilitate tracing lineages, comparing specific taxa side-by-side, and reading long textual labels. 
 
 **Circular Cladogram** - Best for large, complex datasets as it maximizes space efficiency that allows entire large-scale phylogenies to fit cleanly onto a single screen or page. 
+
+### Master Graph Using ggplot2  
+[ggplot2 graphing tutorial](https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/#prerequisites)  

@@ -375,8 +375,7 @@ A tree-like diagram that groups samples based on the similarity of their microbi
    * **Bray-Curtis** - Focuses on abundance data (how many of each bacterium are present).
    * **Jaccard** - Focuses on presence/absence (which bacteria are present, ignoring counts).
    * **UniFrac (Weighted/Unweighted)** - Incorporates phylogenetic relationships (how closely related the bacteria are to one another).
-2. **Clustering Algorithm** - Groups the samples in the distance matrix hierarchically. Common algorithms include Ward's method, average linkage, or complete linkage.
-
+2. **Clustering Algorithm** - Groups the samples in the distance matrix hierarchically. Common algorithms include Ward's method, average linkage, or complete linkage.  
 
 Typically, dendrograms are plotted alongside _heatmaps_ or _metadata bars_. 
 * **Heatmaps** - Displays the abundance of specific bacterial taxa (on the phylum or genus level), depicting exactly which bacteria are driving the clusters. 
@@ -398,8 +397,7 @@ Displays taxonomic changes in the gut microbiome between groups. Common tools in
 * Visually highlights bacterial markers that are different between experimental conditions.
 * **Taxonomic Trees** - Illustrates the composition of microbial communities with nested rings.
 * **Functional Ontologies** - Displays enriched metabolic pathways or gene functions.
-* **Phylogenetic Structures** - Shows evolutionary distance and relationships. 
-
+* **Phylogenetic Structures** - Shows evolutionary distance and relationships.   
 
 **_Rectangular v.s. Circular Cladogram:_**
 

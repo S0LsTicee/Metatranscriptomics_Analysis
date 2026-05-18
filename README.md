@@ -252,7 +252,27 @@ Alpha diversity determines what and how many species are present in a particular
 Additional information on the topic could be found [here](https://cran.r-project.org/web/packages/tabula/vignettes/alpha.html)
 
 ### Beta Diversity Analysis
-Beta diversity measures and quantifies how different two environments from different samples are. 
+Beta diversity measures and quantifies how different two environments from different samples are. It requires a mathematical distance metric or dissimilarity matrix and statistical validation to produce an insightful output. 
+
+**_Dissimilarity Matrix_** 
+Shows how different each pair of samples is; choose the best metrics based on your data type.
+**Bray-Curtis Index** - The most common metric for abundance data, and accounts for both the presence of species and their relative quantities. 
+
+**Aitchison Distance** - often used in microbiomes as it handles the compositional bias by using centered log-ratio (clr). 
+
+**UniFrac** - best choice for microbiome/metagenomic studies as unweighted UniFrac considers phylogenetic (evolutionary) relationships while weighted UniFrac considers the abundance of those lineages. 
+
+**_Distance Metric_**
+Distance matrices can be projected into 2D or 3D visual pattern. 
+**PCoA (Principal Coordinates Analysis)** - The standard method for microbiome and ecological data that plots samples based on custom distance metrics. 
+
+**NMDS (Non-metric Multidimensional Scaling)** - Ranks distances rather than absolute distances, which is highly useful when samples are extremely non-normal. 
+
+**_Statistical Testing_**
+Determines if the differences observed in the distance metrics are statistically significant using specific multivariate statistical tests. 
+**PERMANOVA (Permutational Multivariate Analysis of Variance)** - The gold standard for determining if groupings (control v.s. treatment) explain a significant portion of the variation in community composition. 
+
+**PERMDISP (Test of Multivariate Homogeneity of Group Dispersions)** - Used alongside PERMANOVA to ensure that the variation within the groups is roughly equal. If unequal, the PERMANOVA results may be skewed by variability rather than true differences in composition. 
 
 ### Rarefaction 
 

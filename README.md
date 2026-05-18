@@ -383,7 +383,7 @@ Typically, dendrograms are plotted alongside _heatmaps_ or _metadata bars_.
 * **Metadata Bars** - Color-coded bars indicating traits such as disease state, diet, or treatment, etc. 
 
 ### Cladogram
-Displays taxonomic changes in the gut microbiome between groups. Common tools include LEfSe and [GraPhlAn](https://github.com/biobakery/graphlan/wiki). 
+Displays taxonomic changes in the gut microbiome between groups. Common tools include [LEfSe](https://bioconductor.org/packages//release/bioc/vignettes/lefser/inst/doc/lefser.html) and [GraPhlAn](https://github.com/biobakery/graphlan/wiki). 
 
 **LEfSe (Linear Discriminant Analysis Effect Size)** - discovers metagenomic biomarkers that identify, rank, and visualize features differentially abundant between two or more biological groups. It combines statistical significance with biological relevance to find features that explain differences between conditions. 
     * **Kruskal-Wallis Rank-Sum Test** - Detects features with significant differential abundance. 

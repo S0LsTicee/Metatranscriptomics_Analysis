@@ -316,10 +316,10 @@ Identifies the microbial taxa consistently present across multiple samples withi
 Prevalence measures how often a specific microbe appears across a sample population, while abundance measures how much of that microbe is present. These metrics help identify core taxa, understand spatial distributions, and detect significant differences between experimental or disease groups. 
 
 **_Key Concepts_**
-**Prevalence** - The percentage of samples in a dataset where a specific taxon is detected above a defined limit. This excludes low-quality reads and only analyzes the core microbiome. 
-**Abundance** - Evaluated as _relative abundance_ (the proportion a specific taxon represents the total microbial community) or _absolute abundance_ (the exact number or physical mass of cells). 
-**Prevalence Filtering** - Filters out taxa present in fewer than 10% to 50% of samples to reduce dimensionality of the dataset and computational noise before running statistical tests. 
-**Differential Abundance Analysis** - to find microbes that significantly differ between groups, algorithms that account for compositionality and zero-inflation, such as ANCOM-BC, LinDA (linear regression models on centered log-ratio transformed data aimed to correct biases with FDR control), and MaAsLin2 (multivariate analyses that adjust for metadata and confounding variables), are used. 
+-**Prevalence** - The percentage of samples in a dataset where a specific taxon is detected above a defined limit. This excludes low-quality reads and only analyzes the core microbiome. 
+-**Abundance** - Evaluated as _relative abundance_ (the proportion a specific taxon represents the total microbial community) or _absolute abundance_ (the exact number or physical mass of cells). 
+-**Prevalence Filtering** - Filters out taxa present in fewer than 10% to 50% of samples to reduce dimensionality of the dataset and computational noise before running statistical tests. 
+-**Differential Abundance Analysis** - to find microbes that significantly differ between groups, algorithms that account for compositionality and zero-inflation, such as ANCOM-BC, LinDA (linear regression models on centered log-ratio transformed data aimed to correct biases with FDR control), and MaAsLin2 (multivariate analyses that adjust for metadata and confounding variables), are used. 
 
 ### Proportionality Analysis
 

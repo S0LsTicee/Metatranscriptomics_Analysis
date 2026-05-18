@@ -377,9 +377,25 @@ A tree-like diagram that groups samples based on the similarity of their microbi
    * **UniFrac (Weighted/Unweighted)** - Incorporates phylogenetic relationships (how closely related the bacteria are to one another).
 2. **Clustering Algorithm** - Groups the samples in the distance matrix hierarchically. Common algorithms include Ward's method, average linkage, or complete linkage.
 
+
 Typically, dendrograms are plotted alongside _heatmaps_ or _metadata bars_. 
 * **Heatmaps** - Displays the abundance of specific bacterial taxa (on the phylum or genus level), depicting exactly which bacteria are driving the clusters. 
 * **Metadata Bars** - Color-coded bars indicating traits such as disease state, diet, or treatment, etc. 
 
 ### Cladogram
+Displays taxonomic changes in the gut microbiome between groups. Common tools include LEfSe and [GraPhlAn](https://github.com/biobakery/graphlan/wiki). 
 
+**LEfSe (Linear Discriminant Analysis Effect Size)** - discovers metagenomic biomarkers that identify, rank, and visualize features differentially abundant between two or more biological groups. It combines statistical significance with biological relevance to find features that explain differences between conditions. 
+    * **Kruskal-Wallis Rank-Sum Test** - Detects features with significant differential abundance. 
+    * **Wilcoxon Rank-Sum Test** - Evaluates biological consistency among subclasses. 
+    * **Linear Discriminant Analysis (LDA)** - Estimates the effect size of each differentially abundant feature. LDA scores indicate the magnitude of differences. 
+
+**GraPhlAn (Graphical Phylogenetic Analysis)** - generates high-quality, circular visualizations of taxonomic and phylogenetic trees that display evolutionary relationships alongside metadata, species abundance, biomarkers, and metabolic functions. It requires an input of a tree from pipelines like LEfSe. 
+
+**_Key Features & Functions:_**
+* Visualizes multi-level annotations (taxonomic ranks from Phylum to Strain).
+* Displays abundance and phenotypic data using varying clade sizes, ring annotations, and gradients.
+* Visually highlights bacterial markers that are different between experimental conditions.
+* **Taxonomic Trees** - Illustrates the composition of microbial communities with nested rings.
+* **Functional Ontologies** - Displays enriched metabolic pathways or gene functions.
+* **Phylogenetic Structures** - Shows evolutionary distance and relationships. 

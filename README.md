@@ -7,7 +7,7 @@ sudo apt install python3-pip
 ```
 
 **The pipeline for metageonomics data processing is as follows:  
-_SRA Download -> Convert into fastq files -> KneadData (QC + host removal) -> MetaPhlAn (taxanomic profiling)_**
+_SRA Download -> Convert into fastq files -> KneadData (Quality Control + host removal) -> MetaPhlAn (taxanomic profiling)_**
 
 KneadData is software that coordinates several external tools and is designed for quality control, creating a controlled environment that correctly links all wrappers and executables without breaking other necessary dependencies. The common practice is to use a Conda environment by installing Conda and creating a virtual environment for the analysis. Install the SRA Toolkit as well to set up for file conversion and KneadData and MetaPhlAn inside the conda environment. 
 ```ruby
@@ -406,4 +406,6 @@ Displays taxonomic changes in the gut microbiome between groups. Common tools in
 **Circular Cladogram** - Best for large, complex datasets as it maximizes space efficiency that allows entire large-scale phylogenies to fit cleanly onto a single screen or page. 
 
 ### Master Graph Using ggplot2  
-[ggplot2 graphing tutorial](https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/#prerequisites)  
+[ggplot2 Graphing Tutorial](https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/#prerequisites)  
+
+[More Recent & Simpler Tutorial](https://www.geeksforgeeks.org/r-language/show-multiple-plots-from-ggplot-on-one-page-in-r/)

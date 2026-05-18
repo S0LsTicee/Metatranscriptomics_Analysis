@@ -275,19 +275,51 @@ Determines if the differences observed in the distance metrics are statistically
 **PERMDISP (Test of Multivariate Homogeneity of Group Dispersions)** - Used alongside PERMANOVA to ensure that the variation within the groups is roughly equal. If unequal, the PERMANOVA results may be skewed by variability rather than true differences in composition. 
 
 ### Rarefaction 
+Evaluate sequencing depth and control for size biases when measuring active microbial diversity and gene expression using Phyloseq in R. It shows the number of unique transcripts or species identified as a function of the number of sequences sampled. 
 
+**_Key Concepts & Purposes_**
+1. Rarefaction curves help determine if the sequencing depth is sufficient to capture the active community's diversity and functional profile. If a curve plateaus, it indicates saturation and that additional sequencing will yield only marginal new information.
+2. It adjusts for unequal sequencing depths across different samples by randomly subsampling a standardized number of reads from each sample.
+3. It compares active taxonomic richness and functional gene diversity (a-diversity) across multiple samples.
+4. Rarefaction curves saturate at different rates based on community activity and transcript complexity: highly active, low-diversity samples saturate quickly, while complex, varied communities would require further sequencing.
+5. Rarefying metatranscriptomic data might discard valid data and reduce statistical power. Alternative methods for differential gene expression analysis include DESeq2 or TPM (Transcripts Per Million). 
 
 ### Cooccurrence 
+Maps the concurrent expression of active genes across multiple microbial species within an environment. It identifies which microbes are actively responding to each other. 
 
+**_Key Concepts & Purposes_**
+1. Correlation statistics such as Pearson or Spearman are used to build networks where nodes represent microbial taxa or functional genes, and edges represent significant positive or negative co-expression/cooccurrence.
+2. The analysis is most commonly used to identify microbial cross-feeding, where the metabolic byproducts of one species fuel the gene expression and growth of another.
+3. It is also commonly used to identify specific microbial communities that are actively expressing genes for breaking down pollutants and analyzing how specific bacterial active networks in the human gut shift under the influence of diseases.  
 
 ### CLR-PCA
+A combination of Centered Log-Ratio (CLR) transformation and Principal Component Analysis (PCA) to measure active gene expression within a microbial community. It resolves the arbitrary total read counts and raw abundances present in RNA sequenced data by stabilizing the variance across sparse matrices and transforming the data via log-ratio, allowing PCA to accurately reduce dimensionality and identify functional shifts across samples. 
 
+**_Key Concepts & Purposes_**
+1. CLR normalizes sequencing depths so that the data can be compared properly.
+2. CLR-PCA is mathematically equivalent to generating an ordination based on Aitchison distances.
+3. CLR transformation converts raw counts to relative abundances to account for the closed nature of the data. Applying PCA to the transformed data matrix extracts the primary Principal Components (PCs), explaining the most variance in gene expression.
 
 ### Core Microbiome Analysis
+Identifies the microbial taxa consistently present across multiple samples within a specific environment. It identifies the stable, baseline microbial community. 
 
+**_Three typical primary quantification methods:_**
+1. **Occupancy/Prevalence** - The percentage of samples in which a specific microorganism is found.
+2. **Relative Abundance** - The proportion of the total microbial community made up by a specific taxon across all samples.
+3. **Hybrid** - a metric requiring an organism to exceed a certain minimum abundance and a specific detection threshold. (e.g., 95% prevalence at >= 0.01% abundance).
+
+**_Purposes_**
+1. Identify stable microbial interactions that act as an indicator of systemic health and predict or diagnose diseases.
+2. Target imbalances during medical interventions by understanding the shared core microbiome across healthy populations. 
 
 ### Prevalence Abundance Analysis
+Prevalence measures how often a specific microbe appears across a sample population, while abundance measures how much of that microbe is present. These metrics help identify core taxa, understand spatial distributions, and detect significant differences between experimental or disease groups. 
 
+**_Key Concepts_**
+**Prevalence** - The percentage of samples in a dataset where a specific taxon is detected above a defined limit. This excludes low-quality reads and only analyzes the core microbiome. 
+**Abundance** - Evaluated as _relative abundance_ (the proportion a specific taxon represents the total microbial community) or _absolute abundance_ (the exact number or physical mass of cells). 
+**Prevalence Filtering** - Filters out taxa present in fewer than 10% to 50% of samples to reduce dimensionality of the dataset and computational noise before running statistical tests. 
+**Differential Abundance Analysis** - to find microbes that significantly differ between groups, algorithms that account for compositionality and zero-inflation, such as ANCOM-BC, LinDA (linear regression models on centered log-ratio transformed data aimed to correct biases with FDR control), and MaAsLin2 (multivariate analyses that adjust for metadata and confounding variables), are used. 
 
 ### Proportionality Analysis
 

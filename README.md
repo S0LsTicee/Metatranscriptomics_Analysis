@@ -235,6 +235,11 @@ sudo systemctl restart rstudio-server #Restart service
 
 sudo journalctl -u rstudio-server #Check logs if an error occurs
 ```
+Remove variables in the RStudio environment: 
+```
+rm(list = ls())
+```  
+Remove RStudio console history: ```ctrl + L```  
 
 ## R Code for Metatranscriptomic Analysis 
 See the R code for various analyses in the other files of this repository. The following would offer simple explanations of the functionality of each analysis and how to interpret the output data. 

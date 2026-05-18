@@ -400,6 +400,7 @@ Displays taxonomic changes in the gut microbiome between groups. Common tools in
 * **Functional Ontologies** - Displays enriched metabolic pathways or gene functions.
 * **Phylogenetic Structures** - Shows evolutionary distance and relationships. 
 
+
 **_Rectangular v.s. Circular Cladogram:_**
 
 **Rectangular Cladogram** - Best for small to medium-sized datasets. The horizontally extended branches are highly readable and facilitate tracing lineages, comparing specific taxa side-by-side, and reading long textual labels. 

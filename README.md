@@ -90,14 +90,14 @@ kneaddata \
 ```
 
 ### Some Key Concepts
-**Trimmomatic Parameters:** 
-- ILLUMINACLIP: cut specific Illumina adapter sequences to remove contaminants from the read.
-- LEADING: cut low-quality bases below a certain threshold off the start of a read to reduce noise.
-- TRAILING: cut low-quality bases below a certain threshold off the end of a read to reduce noise.
-- SLIDINGWINDOW: perform a sliding window trimming that cuts when the average quality within the window falls below a specific threshold. 
-- MINLEN: drop the read if it is below a specific length.
-- MAXLEN: drop the read if it is longer than a specific length.
-- AVGQUAL: drop the read if its average quality is below a specific threshold.
+**_Trimmomatic Parameters:_** 
+- **ILLUMINACLIP:** cut specific Illumina adapter sequences to remove contaminants from the read.
+- **LEADING:** cut low-quality bases below a certain threshold off the start of a read to reduce noise.
+- **TRAILING:** cut low-quality bases below a certain threshold off the end of a read to reduce noise.
+- **SLIDINGWINDOW:** perform a sliding window trimming that cuts when the average quality within the window falls below a specific threshold. 
+- **MINLEN:** drop the read if it is below a specific length.
+- **MAXLEN:** drop the read if it is longer than a specific length.
+- **AVGQUAL:** drop the read if its average quality is below a specific threshold.
 
 _If your KneadData crashes due to trimmomatic error, lower the MILEN gradually (e.g., 50 -> 36 -> 20) and/or the SLIDINGWINDOW (e.g., 4:20 -> 4:15; 4 is the number of RNA bases to average across and 20 is the average quality required, both numbers can be lowered to avoid error)._
 

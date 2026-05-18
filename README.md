@@ -362,7 +362,24 @@ Conventional outlier methods often fall short when applied to microbiome data as
 * **Alpha Diversity Filters** - Evaluates within-sample diversity metrics (e.g., Shannon index or OUTs) and filters subjects with unusually low or high richness, which might indicate contamination or DNA extraction failures. 
 
 ### Sample Clustering Dendrogram 
+A tree-like diagram that groups samples based on the similarity of their microbial communities. It visually identifies clusters where similar bacteria cluster closely together on the same branch. 
 
+**_How to Analyze:_**
+* **Leaves (Tips)** - Each individual sample.
+* **Branches** - Lines connecting samples and create a node when joined with another branch.
+* **Cluster** - Groups of branches that stem from a single, lower node. Samples within the same cluster share similar taxonomic profiles.
+* **Branch Length/Height** - The vertical or horizontal scale representing the distance or dissimilarity between samples. The shorter the branch, the more similarities the bacterial composition in the microbiomes shares; the longer the branch, the more differences are present in the bacterial composition.
+
+**_Common Analysis Tools:_**
+1. **Distance Metric** - Measure how different the samples are with a distance matrix. Common metrics include: 
+   * **Bray-Curtis** - Focuses on abundance data (how many of each bacterium are present).
+   * **Jaccard** - Focuses on presence/absence (which bacteria are present, ignoring counts).
+   * **UniFrac (Weighted/Unweighted)** - Incorporates phylogenetic relationships (how closely related the bacteria are to one another).
+2. **Clustering Algorithm** - Groups the samples in the distance matrix hierarchically. Common algorithms include Ward's method, average linkage, or complete linkage.
+
+Typically, dendrograms are plotted alongside _heatmaps_ or _metadata bars_. 
+* **Heatmaps** - Displays the abundance of specific bacterial taxa (on the phylum or genus level), depicting exactly which bacteria are driving the clusters. 
+* **Metadata Bars** - Color-coded bars indicating traits such as disease state, diet, or treatment, etc. 
 
 ### Cladogram
 

@@ -401,6 +401,12 @@ Displays taxonomic changes in the gut microbiome between groups. Common tools in
 
 **GraPhlAn (Graphical Phylogenetic Analysis)** - generates high-quality, circular visualizations of taxonomic and phylogenetic trees that display evolutionary relationships alongside metadata, species abundance, biomarkers, and metabolic functions. It requires an input of a tree from pipelines like LEfSe. 
 
+**Dumbbell + Fisher Exact Test** - Used in microbiome analysis to compare categorical data and identify differentially abundant microbes across distinct experimental groups. This is a better option for a binary dataset (strictly present/absent) with a small sample size per group.  
+  * **Dumbbell** - Statistical framework that analyzes microbial features based on presence/absence or abundance thresholds.  
+  * **Fisher Exact Test** - Operates on the 2x2 table categorizing microbial count data, usually comparing microbial presence against a host condition, by calculating the exact probability of obtaining the observed distribution of microbes to test the null hypothesis of independence, which is essential when sample sizes are small or microbial counts are sparse.  
+  * _Formatting_ - Convert your microbiome abundance data into binary presence/absence or count data that falls above/below a specific threshold.  
+  * _Interpretation_ - Fisher's Exact Test to compare the proportion of subjects carrying a specific microbe between your two groups. A p < 0.05 indicates a statistically significant association between the microbe and your condition. The resulting p-value should be readjusted using FDR (False Discovery Rate) or Benjamini-Hochberg corrections as microbiome analysis tests hundreds of bacteria at once.  
+
 **_Key Features & Functions:_**
 * Visualizes multi-level annotations (taxonomic ranks from Phylum to Strain).
 * Displays abundance and phenotypic data using varying clade sizes, ring annotations, and gradients.

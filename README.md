@@ -240,6 +240,8 @@ Remove variables in the RStudio environment:
 rm(list = ls())
 ```  
 Remove RStudio console history: ```ctrl + L```  
+See current directory: ```getwd()```  
+Move to another directory (necessary when loading files into RStudio): ```setwd("/PATH/TO/FILE/DIRECTORY")```  
 
 ## R Code for Metatranscriptomic Analysis 
 See the R code for various analyses in the other files of this repository. The following would offer simple explanations of the functionality of each analysis and how to interpret the output data. 
